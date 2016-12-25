@@ -27,6 +27,14 @@
  |-------------------------------------------------------*/
 
 /**
+ * TODO
+ * clean up nodeId to node.id
+ *
+ *
+ */
+
+
+/**
  * dTreeNode object
  *
  * @param {string}        dokuid page id of node
@@ -60,10 +68,13 @@ function dTreeNode(dokuid, id, pid, name, hns, isdir, ajax) {
 }
 
 /**
- * Tree object
+ * Tree object as instantiated by the plugin. The tree object allows the state of the tree to be
+ * altered as well as containing all the subnodes in a hierachy.
+ *
+ * TODO should we change the naming scheme of the indexmenu? Will css etc. break on existing themes
  *
  * @param {string} objName id of the indexmenu, has form 'indexmenu_<identifier>'
- * @param {string} theme   name of theme dir
+ * @param {string} theme   name of theme dir (allows declaration and use of an external theme)
  * @constructor
  */
 function dTree(objName, theme) {
@@ -109,6 +120,10 @@ function dTree(objName, theme) {
     this.scrllTmr = 0;             // store timer for horizontal scrolling the page
     this.pageid = JSINFO.id || ''; // current page
     this.fajax = false;            // if retrieve next level of opened nodes
+
+	// TODO add new instance variables for a nested tree structure and methods for accessing it
+	// TODO remove unnecessary variables from the node object
+	// TODO move all node specific logic into nodes
 }
 /**
  * CSS classes:
@@ -118,11 +133,20 @@ function dTree(objName, theme) {
  * a.nodeUrl	Page
  * a.nodeSel 	Last visited page
  * a.navSel 	Current page
+ *
+ * NAMESPACE
+ * PAGE
+ * NAMESPACE w/ PAGE
+ *
+ * HAS SUBNAMESPACES
+ *
  */
 
 
 /**
  * Adds a new node to the node array
+ *
+ * // TODO add the node to it's respective parent node
  *
  * @param {string}        dokuid page id of node
  * @param {number}        id     node id
